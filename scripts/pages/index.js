@@ -1,46 +1,31 @@
-    async function getPhotographers() {
-        // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
-        // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
-        let photographers = [
-            {
-                "name": "Ma data test",
-                "id": 1,
-                "city": "Paris",
-                "country": "France",
-                "tagline": "Ceci est ma data test",
-                "price": 400,
-                "portrait": "account.png"
-            },
-            {
-                "name": "Autre data test",
-                "id": 2,
-                "city": "Londres",
-                "country": "UK",
-                "tagline": "Ceci est ma data test 2",
-                "price": 500,
-                "portrait": "account.png"
-            },
-        ]
-        // et bien retourner le tableau photographers seulement une fois récupéré
-        return ({
-            photographers: [...photographers, ...photographers, ...photographers]})
-    }
+fetch("/data/photographers.json")
+  .then(response => response.json())
+  .then(data => {
+    const photographers = data.photographers;
+    const container = document.querySelector(".photographer_section");
+    let htmlContent = ""; // Initialise une chaîne de caractères vide pour assembler le HTML
 
-    async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
+    photographers.forEach(photographer => {
+      // Ajoute chaque carte de photographe à la chaîne htmlContent sans modifier le DOM directement
+      htmlContent += `
+        <article class="photographer__card">
+            <div class="card">
+                <a href="/photographer.html?id=${photographer.id}">
+                    <img class="photographer__avatar" src="/assets/photographers/${photographer.portrait}" alt="${photographer.name}">
+                    <h2>${photographer.name}</h2>
+                </a>
+                <p class="p-location">${photographer.city}, ${photographer.country}</p>
+                <p>${photographer.tagline}</p>
+                <p class="p-price">${photographer.price}€/jour</p>
+            </div>
+        </article>
+      `;
+    });
 
-        photographers.forEach((photographer) => {
-            const photographerModel = photographerTemplate(photographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
-            photographersSection.appendChild(userCardDOM);
-        });
-    }
-
-    async function init() {
-        // Récupère les datas des photographes
-        const { photographers } = await getPhotographers();
-        displayData(photographers);
-    }
-    
-    init();
-    
+    // Après avoir terminé la boucle, insère tout le HTML en une seule fois
+    container.innerHTML = htmlContent;
+  })
+  .catch(error => {
+    console.error("Erreur lors du chargement des données des photographes:", error);
+    // Considère d'afficher un message d'erreur à l'utilisateur ici
+  });
