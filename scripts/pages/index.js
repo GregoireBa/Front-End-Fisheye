@@ -1,31 +1,26 @@
-fetch("/data/photographers.json")
-  .then(response => response.json())
-  .then(data => {
-    const photographers = data.photographers;
-    const container = document.querySelector(".photographer_section");
-    let htmlContent = ""; // Initialise une chaîne de caractères vide pour assembler le HTML
+import { PhotographerFactory } from "../factory/photographerFactory.js";
 
-    photographers.forEach(photographer => {
-      // Ajoute chaque carte de photographe à la chaîne htmlContent sans modifier le DOM directement
-      htmlContent += `
-        <article class="photographer__card">
-            <div class="card">
-                <a href="/photographer.html?id=${photographer.id}">
-                    <img class="photographer__avatar" src="/assets/photographers/${photographer.portrait}" alt="${photographer.name}">
-                    <h2>${photographer.name}</h2>
-                </a>
-                <p class="p-location">${photographer.city}, ${photographer.country}</p>
-                <p>${photographer.tagline}</p>
-                <p class="p-price">${photographer.price}€/jour</p>
-            </div>
-        </article>
-      `;
+// Fonction pour charger les données des photographes depuis le JSON
+async function getPhotographers() {
+    const response = await fetch('../data/photographers.json');
+    const data = await response.json();
+    return data; // Retourne directement l'objet résultant, sans déstructuration ici
+}
+
+async function displayData(photographersData) {
+    const photographersSection = document.querySelector(".photographer_section");
+
+    photographersData.forEach((photographerData) => {
+        const photographer = PhotographerFactory.createPhotographer(photographerData);
+        const userCardDOM = photographer.getUserCardDOM();
+        photographersSection.appendChild(userCardDOM);
     });
+}
 
-    // Après avoir terminé la boucle, insère tout le HTML en une seule fois
-    container.innerHTML = htmlContent;
-  })
-  .catch(error => {
-    console.error("Erreur lors du chargement des données des photographes:", error);
-    // Considère d'afficher un message d'erreur à l'utilisateur ici
-  });
+async function init() {
+  // Récupère les datas des photographes
+  const { photographers } = await getPhotographers(); // S'assure que getPhotographers retourne un objet avec une propriété photographers
+  displayData(photographers);
+}
+
+init();
