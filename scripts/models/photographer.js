@@ -5,11 +5,13 @@ export class Photographer {
         this.city = data.city;
         this.country = data.country;
         this.tagline = data.tagline;
-        this.price = data.price;
         this.portrait = data.portrait;
     }
 
-    getUserCardDOM() {
-        return photographerTemplate(this).getUserCardDOM();
+    displayDetails() {
+        document.getElementById('photographerPortrait').src = `/assets/photographers/${this.portrait}`;
+        document.getElementById('photographerName').textContent = this.name;
+        document.getElementById('photographerLocation').textContent = `${this.city}, ${this.country}`;
+        document.getElementById('photographerTagline').textContent = this.tagline;
     }
 }

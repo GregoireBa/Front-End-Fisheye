@@ -1,4 +1,4 @@
-function photographerTemplate(data) {
+export function photographerTemplate(data) {
     const { id, name, city, country, tagline, price, portrait } = data;
     const pictureUrl = `assets/photographers/${portrait}`;
 

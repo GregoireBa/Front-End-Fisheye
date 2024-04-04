@@ -1,25 +1,26 @@
 import { PhotographerFactory } from "../factory/photographerFactory.js";
+import { photographerTemplate } from "../templates/photographer.js"; // Assurez-vous que le chemin est correct
 
-// Fonction pour charger les données des photographes depuis le JSON
 async function getPhotographers() {
     const response = await fetch('/data/photographers.json');
     const data = await response.json();
-    return data; // Retourne directement l'objet résultant, sans déstructuration ici
+    return data;
 }
 
 async function displayData(photographersData) {
     const photographersSection = document.querySelector(".photographer_section");
 
     photographersData.forEach((photographerData) => {
+        // Utilisez la factory pour créer un objet photographe
         const photographer = PhotographerFactory.createPhotographer(photographerData);
-        const userCardDOM = photographer.getUserCardDOM();
+        // Utilisez photographerTemplate pour obtenir le DOM de la carte
+        const userCardDOM = photographerTemplate(photographer).getUserCardDOM();
         photographersSection.appendChild(userCardDOM);
     });
 }
 
 async function init() {
-  // Récupère les datas des photographes
-  const { photographers } = await getPhotographers(); // S'assure que getPhotographers retourne un objet avec une propriété photographers
+  const { photographers } = await getPhotographers();
   displayData(photographers);
 }
 
