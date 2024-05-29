@@ -1,9 +1,4 @@
-async function getPhotographers() {
-    const response = await fetch('./data/photographers.json');
-    const data = await response.json();
-    return data;
-}
-
+import { getPhotographers } from '../utils/api.js';
 
 async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
@@ -14,10 +9,13 @@ async function displayData(photographers) {
     });
 }
 
-
 async function init() {
-    const { photographers } = await getPhotographers();
-    displayData(photographers);
+    try {
+        const photographers = await getPhotographers();
+        displayData(photographers);
+    } catch (error) {
+        console.error("Failed to load photographers: ", error);
+    }
 }
 
 init();
