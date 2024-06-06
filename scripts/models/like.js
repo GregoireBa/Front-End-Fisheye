@@ -1,34 +1,47 @@
+export let likesState = {};
+
 export function attachLikeEventHandlers(container) {
-    container.addEventListener('click', function(event) {
-        const btnLike = event.target.closest('.btn_like');
-        if (btnLike) {
-            const totalLikes = btnLike.closest('.grp-like').querySelector('.total-likes');
-            let likes = parseInt(totalLikes.textContent, 10);
+    if (!container) {
+        console.error("Container for attaching event handlers not found.");
+        return;
+    }
 
-            // Toggle le statut du like
-            if (!btnLike.isLiked) {
-                likes++;
-                btnLike.isLiked = true; // Marque le bouton comme 'liké'
-                btnLike.classList.add('liked');
-            } else {
-                likes--;
-                btnLike.isLiked = false; // Retire le statut 'liké'
-                btnLike.classList.remove('liked');
-            }
+    // Retirer les anciens gestionnaires d'événements pour éviter des doublons
+    container.removeEventListener('click', handleLikeClick);
 
-            totalLikes.textContent = likes; // Met à jour le nombre de likes pour cette photo
-            updateTotalLikes(); // Met à jour le total global des likes affiché
-        }
-    });
+    // Attacher un nouvel écouteur d'événements
+    container.addEventListener('click', handleLikeClick);
 }
 
-// Fonction pour mettre à jour le total global des likes
+function handleLikeClick(event) {
+    const btnLike = event.target.closest('.btn_like');
+    if (btnLike) {
+        const mediaId = btnLike.getAttribute('data-id');
+        if (!likesState[mediaId]) {
+            likesState[mediaId] = { liked: false, count: parseInt(btnLike.parentElement.querySelector('.total-likes').textContent, 10) };
+        }
+
+        if (!likesState[mediaId].liked) {
+            likesState[mediaId].count++;
+            likesState[mediaId].liked = true;
+            btnLike.classList.add('liked');
+        } else {
+            likesState[mediaId].count--;
+            likesState[mediaId].liked = false;
+            btnLike.classList.remove('liked');
+        }
+
+        btnLike.parentElement.querySelector('.total-likes').textContent = likesState[mediaId].count;
+        updateTotalLikes();
+    }
+}
+
 export function updateTotalLikes() {
     const totalLikesElements = document.querySelectorAll('.total-likes');
     const totalLikes = Array.from(totalLikesElements).reduce((acc, elem) => acc + parseInt(elem.textContent, 10), 0);
     
     const totalLikesDisplay = document.querySelector('.photographer_likes_count');
     if (totalLikesDisplay) {
-        totalLikesDisplay.textContent = totalLikes; // Affiche le total des likes
+        totalLikesDisplay.textContent = totalLikes; // Update the total likes display
     }
 }

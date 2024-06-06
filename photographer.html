@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="assets/favicon.png" />
-    <link
-      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <title>Fisheye - photographe</title>
-  </head>
 
-  <body>
-    <header>
-      <a href="/">
-        <h1>
-          <img src="assets/images/logo.png" class="logo" alt="Fisheye Retour à l'accueil" />
-        </h1>
-      </a>
-    </header>
-    <main id="main">
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet" />
+  <title>Fisheye - photographe</title>
+</head>
 
-      <div class="photograph-header"></div>
+<body>
+  <header>
+    <a href="/">
+      <h1>
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Retour à l'accueil" />
+      </h1>
+    </a>
+  </header>
+  <main id="main">
+    <div class="photograph-header"></div>
 
-      <div class="filter">
-        <p>Trier par</p>
-      </div>
+    <div class="filter sort-selector-container">
+      <label for="sort-selector">Trier par :</label>
+      <select id="sort-selector">
+        <option value="popularity" selected>Popularité</option>
+        <option value="date">Date</option>
+        <option value="title">Titre</option>
+      </select>
+    </div>
 
-      <div class="content_medias">
+    <div class="content_medias"></div>
 
-      </div>
+    <aside class="photographer_like_price"></aside>
+  </main>
+  <script type="module" src="/scripts/pages/photographer.js"></script>
+  <script src="/scripts/utils/contactForm.js"></script>
+  <script src="https://kit.fontawesome.com/35a44a618f.js" crossorigin="anonymous"></script>
+</body>
 
-      <aside class="photographer_like_price">
-
-      </aside>
-
-    </main>  
-    <script type="module" src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
-    <script src="https://kit.fontawesome.com/35a44a618f.js" crossorigin="anonymous"></script>
-  </body>
 </html>
