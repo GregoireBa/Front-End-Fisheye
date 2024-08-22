@@ -1,4 +1,3 @@
-import MediasFactory from "../templates/mediaFactory.js";
 import { getPhotographers, getMediaByPhotographer } from "../utils/api.js";
 import { attachLikeEventHandlers, updateTotalLikes } from "../models/like.js";
 import { sortByPopularity, sortByDate, sortByTitle } from "../models/filter.js";
@@ -75,7 +74,7 @@ function createPhotographerMedias(photographer, medias, likesState) {
             ? `<a href="#" class="media-link" data-media="${media.id}" role="button">
                  <img class="thumbnail" src="./assets/images/photographers/${photographer.name}/${media.image}" alt="${media.title}">
                </a>`
-            : `<div class="video-container" tabindex="0" role="button" data-media="${media.id}" aria-label="Play video">
+            : `<div class="video-container" tabindex="0" role="button" data-media="${media.id}" aria-label="Lancer la vidéo">
                  <video class="thumbnail">
                    <source src="./assets/images/photographers/${photographer.name}/${media.video}" type="video/mp4">
                  </video>
@@ -88,9 +87,10 @@ function createPhotographerMedias(photographer, medias, likesState) {
               <figure>
                 ${mediaContent}
                 <figcaption><span class="span-card-gallery">${media.title}</span></figcaption>
-                <div class="grp-like" role="group" aria-label="Nombre de likes total">
-                  <span class="total-likes">${likes}</span>
-                  <button class="btn_like ${likedClass}" type="button" aria-label="Like" data-id="${media.id}">
+                <div class="grp-like">
+                  <button class="btn_like ${likedClass}" type="button" data-id="${media.id}">
+                    <span class="sr-only" aria-live="polite">Nombre de like total sur le média :</span>
+                    <span class="total-likes">${likes}</span>
                     <span class="fas fa-heart" aria-hidden="true"></span>
                   </button>
                 </div>
