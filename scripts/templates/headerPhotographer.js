@@ -12,7 +12,7 @@ export function updatePhotographerInfo(photographer) {
       <p class="p-city-country-photographerID">${photographer.city}, ${photographer.country}</p>
       <p class="p-tagline-photographerID">${photographer.tagline}</p>
     </div>
-    <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+    <button id="openModal" class="contact_button" onclick="displayModal()">Contactez-moi</button>
     <img class="portrait-header" src="assets/images/photographers/${photographer.portrait}" alt="Portrait of ${photographer.name}">
   `;
 

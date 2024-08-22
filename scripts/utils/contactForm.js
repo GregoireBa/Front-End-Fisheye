@@ -7,7 +7,7 @@ function displayModal() {
     
     // Afficher la modal
     modal.style.display = "block";
-    modal.removeAttribute('aria-hidden');
+    modal.setAttribute('aria-hidden', 'false');
     
     // Focus sur le bouton de fermeture
     closeBtn.focus();
@@ -18,6 +18,7 @@ function displayModal() {
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
+    const openModal = document.getElementById('openModal');
     
     // Masquer la modal
     modal.style.display = "none";
@@ -32,6 +33,9 @@ function closeModal() {
     
     // Retirer le piège de focus
     removeTrapFocus();
+    
+     // Remet le focus sur le bouton d'ouverture
+    openModal.focus();
 }
 
 function trapFocus(modal) {
