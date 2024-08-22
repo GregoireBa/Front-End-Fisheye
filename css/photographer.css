@@ -1,13 +1,3 @@
-#contact_modal {
-  display: none;
-}
-
-.photograph-header {
-  background-color: #FAFAFA;
-  height: 300px;
-  margin: 0 100px;
-}
-
 .contact_button {
   font-size: 20px;
   font-weight: bold;
@@ -21,10 +11,33 @@
   cursor: pointer;
 }
 
+.main-modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1055;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
+
+#contact_modal {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
 .modal {
   border-radius: 5px;
   background-color: #DB8876;
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,9 +46,19 @@
   margin: auto;
 }
 
-.modal header {
+.header-modal {
+  display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
   width: 100%;
+}
+
+.title-modal{
+  font-size: 64px;
+  width: 70%;
+  color:black;
+  margin:0;
 }
 
 .modal header img {
@@ -75,6 +98,18 @@ form input {
   border-radius: 5px;
 }
 
+textarea {
+  width: 100%; /* Le textarea prend 100% de la largeur disponible dans la modal */
+  max-width: 100%; /* Le textarea ne peut pas dépasser la largeur de son conteneur */
+  min-width: 100%; /* Le textarea ne peut pas être plus petit que la largeur de son conteneur */
+  box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur */
+  resize: vertical; /* Permet seulement d'étirer verticalement */
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
 .h2-photographerID {
   color: #d3573c;
   font-size: 64px;
@@ -101,6 +136,13 @@ form input {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.portrait-header {
+  height: 200px;
+  width: 200px;
+  border-radius: 200px;
+  object-fit: cover;
 }
 
 .contact_button {
@@ -133,7 +175,9 @@ form input {
   width: 100%;
 }
 
-.modal header img {
+.close{
+  background: none;
+  border:none;
   cursor: pointer;
 }
 
@@ -170,13 +214,6 @@ form input {
   border-radius: 5px;
 }
 
-.photograph-header img {
-  height: 200px;
-  width: 200px;
-  border-radius: 200px;
-  object-fit: cover;
-}
-
 .filter{
     margin: 20px 100px;
 }
@@ -189,12 +226,12 @@ form input {
   justify-content: space-between;
 }
 
-.card_galerry > a >  figure{
+.card_galerry {
   width: 350px;
   margin: 0;
 }
 
-.card_galerry > a > figure > img{
+.media-link img{
   width: 350px;
   height: 300px;
   object-fit: cover;
@@ -202,7 +239,7 @@ form input {
   margin: 0;
 }
 
-.card_galerry > a > figure > video{
+.video-container{
   width: 350px;
   height: 300px;
   object-fit: cover;
