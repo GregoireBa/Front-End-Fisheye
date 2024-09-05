@@ -29,10 +29,10 @@ async function getPhotographers() {
  * @param {number} photographerId - The ID of the photographer.
  * @returns {Promise<Array>} A promise that resolves to an array of media objects for the given photographer.
  */
-async function getMediaByPhotographer(photographerId) {
+async function getMediaByPhotographerId(photographerId) {
     return fetchData('./data/photographers.json').then(data => 
         data.media.filter(media => media.photographerId === photographerId)
     );
 }
 
-export { getPhotographers, getMediaByPhotographer };
+export { getPhotographers, getMediaByPhotographerId };

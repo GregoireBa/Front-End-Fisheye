@@ -42,6 +42,6 @@ export function updateTotalLikes() {
     
     const totalLikesDisplay = document.querySelector('.photographer_likes_count');
     if (totalLikesDisplay) {
-        totalLikesDisplay.textContent = totalLikes; // Update the total likes display
+        totalLikesDisplay.innerHTML = '<span class="sr-only">Nombre de like total sur la page : </span>' + totalLikes;
     }
 }
