@@ -1,13 +1,6 @@
 import MediaFactory from '../templates/mediaFactory.js';
-import Media from '../models/media.js';
 
-export default class PhotographerCard {
-    constructor(media, likesState) {
-        this.media = new Media(mediaData);
-        this.likesState = likesState;
-    }
-
-    createCard() {
+export function PhotographerCard() {
         // Crée l'élément media via la MediaFactory
         const mediaElement = MediaFactory(this.media);
 
@@ -45,6 +38,5 @@ export default class PhotographerCard {
 
         article.appendChild(figure);
 
-        return article; // Retourne l'élément article prêt à être inséré dans le DOM
-    }
+        return article; // Retourne l'élément article prêt à être inséré dans le DOM  
 }

@@ -24,15 +24,13 @@ async function getPhotographers() {
     return fetchData('./data/photographers.json').then(data => data.photographers);
 }
 
-/**
- * Retrieves media for a specific photographer by their ID.
- * @param {number} photographerId - The ID of the photographer.
- * @returns {Promise<Array>} A promise that resolves to an array of media objects for the given photographer.
- */
-async function getMediaByPhotographerId(photographerId) {
-    return fetchData('./data/photographers.json').then(data => 
-        data.media.filter(media => media.photographerId === photographerId)
-    );
+
+async function getPhotographerById(photographerId) {
+    const data = await fetchData('./data/photographers.json')
+    const photographer = data.photographers.find(p => p.id === photographerId)
+    const media = data.media.filter(m => m.photographerId === photographerId)
+
+    return { ...photographer,media }
 }
 
-export { getPhotographers, getMediaByPhotographerId };
+export { getPhotographers, getPhotographerById };

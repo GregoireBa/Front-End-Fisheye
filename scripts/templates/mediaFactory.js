@@ -1,4 +1,4 @@
-function MediaFactory(mediaType, mediaSrc, data, altText = '') {
+function MediaFactory(mediaType, mediaSrc, altText = '') {
     let mediaElement;
   
     // Choix du type de média à créer
