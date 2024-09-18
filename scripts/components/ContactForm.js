@@ -17,14 +17,14 @@ export function ContactForm() {
           <button type="submit" class="contact_button">Envoyer</button>
     `;
 
-    // Ajout d'un écouteur d'événements pour la soumission du formulaire
-    document
-        .getElementById("contact_form")
-        .addEventListener("submit", function (event) {
-            event.preventDefault(); // Empêche la soumission réelle du formulaire
-            const lastName = document.getElementById("lastname_input").value;
-            const email = document.getElementById("email").value;
-            const message = document.getElementById("message").value;
-            console.log("Nom saisi:", lastName, "Email saisi:", email, "Message saisi:", message); // Affiche la valeur saisie dans la console
-        });
+    // Ajout de l'écouteur d'événement pour la soumission du formulaire
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Empêche la soumission réelle du formulaire
+        const lastName = form.querySelector("#lastname_input").value;
+        const email = form.querySelector("#email").value;
+        const message = form.querySelector("#message").value;
+        console.log("Nom saisi:", lastName, "Email saisi:", email, "Message saisi:", message); // Affiche la valeur saisie dans la console
+    });
+
+    return form;
 }

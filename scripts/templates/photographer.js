@@ -2,6 +2,7 @@ import UserCard from "../components/UserCard.js";
 import { NavBar } from "../components/NavBar.js";
 import { PhotographerHeader } from "../components/PhotographerHeader.js";
 import { Modal } from "../components/Modal.js";
+import { ContactForm } from "../components/ContactForm.js";
 
 function photographerTemplate() {
   function createHomePage(photographers) {
@@ -29,8 +30,14 @@ function photographerTemplate() {
     const modalbox = Modal(photographer);   
     root.appendChild(modalbox.modalElement);
 
+
+
     const headerdiv = PhotographerHeader(photographer, modalbox.displayModal);
     header.appendChild(headerdiv);
+
+    const contactform = ContactForm();
+    const headerModalDiv = modalbox.modalElement.querySelector('.header-modal');
+    headerModalDiv.insertAdjacentElement('afterend', contactform);
 
     const main = document.getElementById("main");
   }
