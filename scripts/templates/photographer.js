@@ -1,6 +1,7 @@
 import UserCard from "../components/UserCard.js";
 import { NavBar } from "../components/NavBar.js";
 import { PhotographerHeader } from "../components/PhotographerHeader.js";
+import { Modal } from "../components/Modal.js";
 
 function photographerTemplate() {
   function createHomePage(photographers) {
@@ -18,13 +19,18 @@ function photographerTemplate() {
 
   function createPhotographerPage(photographer) {
     const root = document.getElementById("root");
+
     const header = document.createElement("header")
     root.prepend(header)
     const navbar = NavBar();
     header.appendChild(navbar);
+    
+    // Modal
+    const modalbox = Modal(photographer);   
+    root.appendChild(modalbox.modalElement);
 
-    const headerDiv = PhotographerHeader(photographer);
-    header.appendChild(headerDiv);
+    const headerdiv = PhotographerHeader(photographer, modalbox.displayModal);
+    header.appendChild(headerdiv);
 
     const main = document.getElementById("main");
   }
