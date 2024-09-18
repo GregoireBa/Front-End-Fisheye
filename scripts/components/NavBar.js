@@ -1,10 +1,14 @@
-export function NavBar(){
-    const header = document.createElement("header");
-    header.innerHTML = `<a href="/" title="Fisheye (retour à l’accueil)">
+export function NavBar(showTitle = false){
+    const navbar = document.createElement("nav");
+
+    navbar.innerHTML = `
+    <div class="navBar">
+    <a href="/" title="Fisheye (retour à l’accueil)">
       <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
     </a>
     
-    <h1>Nos photographes</h1>`
+    ${showTitle ? '<h1>Nos photographes</h1>' : ''}
+    </div>`
 
-    return header
+    return navbar
 }
