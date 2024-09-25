@@ -3,7 +3,12 @@ export function ContactForm(photographer) {
   form.id = "contact_form";
 
   form.innerHTML = `
-          <h1 class="title-modal" id="modal-heading">Contactez-moi ${photographer.name}</h1>
+          <div class="header-modal">
+            <h1 class="title-modal" id="modal-heading">Contactez-moi ${photographer.name}</h1>
+            <button class="close" type="button" aria-label="bouton fermer la modal">
+              <img src="assets/icons/close.svg" alt="icone bouton fermer la modale" />
+            </button>
+          </div>
           <div>
             <label for="lastname_input">Nom</label>
             <input type="text" id="lastname_input" name="lastname_input" />

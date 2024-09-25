@@ -23,18 +23,15 @@ function photographerTemplate() {
 
     const header = document.createElement("header");
     root.prepend(header);
-    
+
     const navbar = NavBar();
     header.appendChild(navbar);
 
-    const contactform = ContactForm(photographer);
-    const titleHeading = contactform.querySelector("h1");
-
-    const modalbox = Modal(contactform);
+    // Modal + le composant ContactForm
+    const modalbox = Modal(ContactForm(photographer));
     root.appendChild(modalbox.modalElement);
 
-    modalbox.addToHeader(titleHeading);
-
+    // Header de la page photographer
     const headerdiv = PhotographerHeader(photographer, modalbox.displayModal);
     header.appendChild(headerdiv);
 

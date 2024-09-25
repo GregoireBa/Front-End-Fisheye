@@ -8,19 +8,13 @@ export function Modal(contentDOM) {
 
   modalElement.innerHTML = `
       <div class="modal" aria-labelledby="modal-heading">
-        <div class="header-modal">
-          <button class="close" type="button" aria-label="bouton fermer la modal">
-            <img src="assets/icons/close.svg" alt="icone bouton fermer la modale" />
-          </button>
-        </div>
-
-        <div class="modal-body"></div>
+      
       </div>
     `;
 
   // Ajout du contenu passé en paramètre dans la modale
   if (contentDOM) {
-    const modalBody = modalElement.querySelector(".modal-body");
+    const modalBody = modalElement.querySelector(".modal");
     modalBody.appendChild(contentDOM);
   }
 
