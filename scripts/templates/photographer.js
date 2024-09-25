@@ -21,23 +21,22 @@ function photographerTemplate() {
   function createPhotographerPage(photographer) {
     const root = document.getElementById("root");
 
-    const header = document.createElement("header")
-    root.prepend(header)
+    const header = document.createElement("header");
+    root.prepend(header);
+    
     const navbar = NavBar();
     header.appendChild(navbar);
-    
-    // Modal
-    const modalbox = Modal(photographer);   
+
+    const contactform = ContactForm(photographer);
+    const titleHeading = contactform.querySelector("h1");
+
+    const modalbox = Modal(contactform);
     root.appendChild(modalbox.modalElement);
 
-
+    modalbox.addToHeader(titleHeading);
 
     const headerdiv = PhotographerHeader(photographer, modalbox.displayModal);
     header.appendChild(headerdiv);
-
-    const contactform = ContactForm();
-    const headerModalDiv = modalbox.modalElement.querySelector('.header-modal');
-    headerModalDiv.insertAdjacentElement('afterend', contactform);
 
     const main = document.getElementById("main");
   }

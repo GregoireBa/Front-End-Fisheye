@@ -1,6 +1,6 @@
-export function PhotographerHeader(photographer, displayModal){
-    const headerDiv = document.createElement("div");
-    headerDiv.classList.add('photograph-header');
+export function PhotographerHeader(photographer, displayModal) {
+  const headerDiv = document.createElement("div");
+  headerDiv.classList.add("photograph-header");
 
   headerDiv.innerHTML = `
     <div>
@@ -13,8 +13,8 @@ export function PhotographerHeader(photographer, displayModal){
   `;
 
   // Utilisation de la fonction displayModal passée en argument
-  const openModalButton = headerDiv.querySelector('#openModal');
-  openModalButton.addEventListener('click', displayModal);
+  const openModalButton = headerDiv.querySelector("#openModal");
+  openModalButton.addEventListener("click", displayModal);
 
-    return headerDiv
+  return headerDiv;
 }

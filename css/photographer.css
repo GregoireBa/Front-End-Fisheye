@@ -6,12 +6,12 @@
   width: 170px;
   height: 70px;
   border: none;
-  background-color: #901C1C;
+  background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.main-modal{
+.main-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -36,7 +36,7 @@
 
 .modal {
   border-radius: 5px;
-  background-color: #DB8876;
+  background-color: #db8876;
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -44,6 +44,10 @@
   justify-content: space-between;
   padding: 35px;
   margin: auto;
+}
+
+.modal-body {
+  width: 100%;
 }
 
 .header-modal {
@@ -54,11 +58,11 @@
   width: 100%;
 }
 
-.title-modal{
+.title-modal {
   font-size: 64px;
   width: 70%;
-  color:black;
-  margin:0;
+  color: black;
+  margin: 0;
 }
 
 .modal header img {
@@ -79,7 +83,7 @@ form {
 }
 
 form label {
-  color: #312E2E;
+  color: #312e2e;
   font-size: 36px;
 }
 
@@ -132,7 +136,7 @@ textarea {
   background-color: #fafafa;
   height: 300px;
   margin: 0 100px;
-  padding:50px;
+  padding: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -175,9 +179,9 @@ textarea {
   width: 100%;
 }
 
-.close{
+.close {
   background: none;
-  border:none;
+  border: none;
   cursor: pointer;
 }
 
@@ -214,11 +218,11 @@ form input {
   border-radius: 5px;
 }
 
-.filter{
-    margin: 20px 100px;
+.filter {
+  margin: 20px 100px;
 }
 
-.gallery-photographer{
+.gallery-photographer {
   display: flex;
   flex-wrap: wrap;
   gap: 95px;
@@ -231,7 +235,7 @@ form input {
   margin: 0;
 }
 
-.media-link img{
+.media-link img {
   width: 350px;
   height: 300px;
   object-fit: cover;
@@ -239,7 +243,7 @@ form input {
   margin: 0;
 }
 
-.video-container{
+.video-container {
   width: 350px;
   height: 300px;
   object-fit: cover;
@@ -247,7 +251,7 @@ form input {
   margin: 0;
 }
 
-.card_galerry > figcaption{
+.card_galerry > figcaption {
   width: 350px;
   margin: 0;
   display: flex;
@@ -255,35 +259,35 @@ form input {
   align-items: center;
 }
 
-.span-card-gallery{
-font-size:24px;
-color:#901C1C;
-padding:10px 0;
+.span-card-gallery {
+  font-size: 24px;
+  color: #901c1c;
+  padding: 10px 0;
 }
 
-.grp-like{
-display: flex;
-gap:5px;
-align-items: center;
-color:#901C1C;
-font-size:24px;
+.grp-like {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #901c1c;
+  font-size: 24px;
 }
 
-.btn_like{
+.btn_like {
   background: none;
   border: none;
   font-size: 24px;
-  color:#901C1C;
+  color: #901c1c;
   cursor: pointer;
 }
 
-.aside-photographer{
+.aside-photographer {
   width: 300px;
   height: 50px;
   border-radius: 5px 5px 0 0;
   font-size: 24px;
   font-weight: 500;
-  background-color: #DB8876;
+  background-color: #db8876;
   display: flex;
   justify-content: space-around;
   align-items: center;
