@@ -18,16 +18,6 @@ export function Modal(contentDOM) {
     modalBody.appendChild(contentDOM);
   }
 
-  // Fonction pour déplacer ou ajouter un élément dans le header de la modale
-  modalElement.addToHeader = function (headerContent) {
-    const headerModal = modalElement.querySelector(".header-modal");
-    const closeButton = headerModal.querySelector(".close"); // Le bouton de fermeture
-    if (headerModal && headerContent && closeButton) {
-      // Insérer headerContent avant le bouton de fermeture
-      headerModal.insertBefore(headerContent, closeButton);
-    }
-  };
-
   function displayModal() {
     // Empêcher le défilement
     document.body.classList.add("no-scroll");
@@ -138,9 +128,5 @@ export function Modal(contentDOM) {
   return {
     modalElement,
     displayModal,
-    closeModal,
-    trapFocus,
-    removeTrapFocus,
-    addToHeader: modalElement.addToHeader,
   };
 }

@@ -28,13 +28,14 @@ function photographerTemplate() {
     header.appendChild(navbar);
 
     // Modal + le composant ContactForm
-    const modalbox = Modal(ContactForm(photographer));
-    root.appendChild(modalbox.modalElement);
+    const { displayModal, modalElement } = Modal(ContactForm(photographer));
+    root.appendChild(modalElement);
 
     // Header de la page photographer
-    const headerdiv = PhotographerHeader(photographer, modalbox.displayModal);
+    const headerdiv = PhotographerHeader(photographer, displayModal);
     header.appendChild(headerdiv);
 
+    // To do , element select + gallery
     const main = document.getElementById("main");
   }
 
