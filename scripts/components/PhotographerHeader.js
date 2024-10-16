@@ -4,7 +4,7 @@ export function PhotographerHeader(photographer, displayModal) {
 
   headerDiv.innerHTML = `
     <div>
-      <h1 class="h2-photographerID">${photographer.name}</h1>
+      <h1 class="h1-photographerID">${photographer.name}</h1>
       <p class="p-city-country-photographerID">${photographer.city}, ${photographer.country}</p>
       <p class="p-tagline-photographerID">${photographer.tagline}</p>
     </div>

@@ -3,6 +3,12 @@ import { NavBar } from "../components/NavBar.js";
 import { PhotographerHeader } from "../components/PhotographerHeader.js";
 import { Modal } from "../components/Modal.js";
 import { ContactForm } from "../components/ContactForm.js";
+import { PhotographerSort } from "../components/PhotographerSort.js";
+import { PhotographerGallery } from "../components/PhotographerGallery.js";
+import {
+  AsidePhotographer,
+  updateAsideLikes,
+} from "../components/AsidePhotographer.js";
 
 function photographerTemplate() {
   function createHomePage(photographers) {
@@ -19,6 +25,7 @@ function photographerTemplate() {
   }
 
   function createPhotographerPage(photographer) {
+    const media = photographer.media;
     const root = document.getElementById("root");
 
     const header = document.createElement("header");
@@ -35,8 +42,17 @@ function photographerTemplate() {
     const headerdiv = PhotographerHeader(photographer, displayModal);
     header.appendChild(headerdiv);
 
-    // To do , element select + gallery
+    // Main - Select - Gallery - Aside
     const main = document.getElementById("main");
+
+    const select = PhotographerSort();
+    main.appendChild(select);
+
+    const galeryCard = PhotographerGallery(photographer, media);
+    main.appendChild(galeryCard);
+
+    const aside = AsidePhotographer(photographer, media);
+    main.appendChild(aside);
   }
 
   // Retourner les deux parties du template

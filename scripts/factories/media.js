@@ -9,9 +9,8 @@ function MediaFactory(mediaType, mediaSrc, altText = "") {
   } else if (mediaType === "video") {
     mediaElement = document.createElement("video");
     mediaElement.src = mediaSrc;
-    mediaElement.autoplay = true;
+    mediaElement.autoplay = false;
     mediaElement.muted = true;
-    mediaElement.loop = true;
   } else {
     throw new Error("Unsupported media type");
   }

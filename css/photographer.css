@@ -34,16 +34,23 @@
   width: 100%;
 }
 
+#contact_modal {
+  width: 100%;
+  height: 100%;
+}
+
 .modal {
   border-radius: 5px;
   background-color: #db8876;
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  width: 50%;
+  position: fixed;
   padding: 35px;
-  margin: auto;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  max-width: 680px;
+  height: auto;
 }
 
 .modal-body {
@@ -76,18 +83,18 @@
 }
 
 textarea {
-  width: 100%; /* Le textarea prend 100% de la largeur disponible dans la modal */
-  max-width: 100%; /* Le textarea ne peut pas dépasser la largeur de son conteneur */
-  min-width: 100%; /* Le textarea ne peut pas être plus petit que la largeur de son conteneur */
-  box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur */
-  resize: vertical; /* Permet seulement d'étirer verticalement */
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
 }
 
 .no-scroll {
   overflow: hidden;
 }
 
-.h2-photographerID {
+.h1-photographerID {
   color: #d3573c;
   font-size: 64px;
   margin: 20px 0 0 0;
@@ -187,12 +194,27 @@ form input {
   margin: 20px 100px;
 }
 
-.gallery-photographer {
+.gallery {
   display: flex;
   flex-wrap: wrap;
   gap: 95px;
-  margin: 20px 100px;
+  margin: 20px 0;
   justify-content: space-between;
+}
+
+.gallery_card {
+  max-width: 350px;
+}
+
+.figcaption-gallery {
+  display: flex;
+  justify-content: space-between;
+}
+
+.figcaption-gallery h2 {
+  color: #901c1c;
+  font-size: 24px;
+  margin: 0;
 }
 
 .card_galerry {
@@ -200,15 +222,12 @@ form input {
   margin: 0;
 }
 
-.media-link img {
-  width: 350px;
-  height: 300px;
-  object-fit: cover;
-  overflow: hidden;
+.fig-gallery {
+  /* padding: 0; */
   margin: 0;
 }
 
-.video-container {
+.media {
   width: 350px;
   height: 300px;
   object-fit: cover;
@@ -233,7 +252,7 @@ form input {
 .grp-like {
   display: flex;
   gap: 5px;
-  align-items: center;
+  align-items: start;
   color: #901c1c;
   font-size: 24px;
 }

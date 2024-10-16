@@ -1,11 +1,15 @@
 @import url("photographer.css");
 
 body {
-    font-family: "DM Sans", sans-serif;
-    margin: 0;
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
 }
 
-.navBar{
+main {
+  margin: 0 100px;
+}
+
+.navBar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -17,7 +21,7 @@ body {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important;
   -webkit-clip-path: inset(50%) !important;
-    clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
   height: 1px !important;
   margin: -1px !important;
   overflow: hidden !important;
@@ -28,52 +32,52 @@ body {
 }
 
 h1 {
-    color: #901C1C;
-    margin-right: 100px;
+  color: #901c1c;
+  margin-right: 100px;
 }
 
 h2 {
-  color: #D3573C;
+  color: #d3573c;
   font-size: 36px;
-  margin:20px 0 0 0;
+  margin: 20px 0 0 0;
 }
 
-p{
-  padding:0;
-  margin:0;
+p {
+  padding: 0;
+  margin: 0;
 }
 
-.p-city-country{
-  color:#901C1C;
+.p-city-country {
+  color: #901c1c;
   font-size: 13px;
 }
 
-.p-tagline{
+.p-tagline {
   font-size: 10px;
 }
-.p-price{
+.p-price {
   font-size: 9px;
-  color:#757575;
+  color: #757575;
 }
 
 .logo {
-    height: 50px;
-    margin-left: 100px;
+  height: 50px;
+  margin-left: 100px;
 }
 
 .photographer_section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 100px;
 }
 
 .photographer_section article {
-    justify-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .photographer_section article a {
@@ -84,8 +88,114 @@ p{
 }
 
 .photographer_section article img {
-    height: 200px;
-    width: 200px;
-    border-radius: 200px;
-    object-fit: cover;
+  height: 200px;
+  width: 200px;
+  border-radius: 200px;
+  object-fit: cover;
+}
+
+/* Select  */
+.custom-select {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.container-select {
+  margin: 1.2rem 0;
+  position: relative;
+  border-radius: 5;
+}
+.container-select #announcement {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+}
+.container-select label {
+  display: block;
+  padding: 0.7rem 0.8rem;
+  text-align: left;
+}
+.container-select select,
+.container-select button,
+.container-select ul {
+  display: block;
+  padding: 0.7rem 0.8rem;
+  width: 170px;
+  text-align: left;
+  background-color: #901c1c;
+  color: white;
+  border: 0;
+  font-size: 1rem;
+}
+.container-select button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.container-select button::before {
+  font-family: "Font Awesome 5 Free";
+  content: "";
+  vertical-align: middle;
+  font-weight: 900;
+  position: absolute;
+  right: 0.8rem;
+}
+.container-select button:focus-visible {
+  outline: 0;
+}
+.container-select ul {
+  color: #ffffff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: auto;
+  overflow-y: auto;
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0.1rem;
+  opacity: 0;
+  transform: scale(1, 0);
+  transform-origin: top left;
+  transition: all 0.3s ease-in;
+  pointer-events: none;
+  z-index: 2;
+}
+.container-select ul.active {
+  opacity: 1;
+  transform: scale(1, 1);
+  pointer-events: auto;
+}
+.container-select ul li {
+  padding: 0.6rem 0.5rem;
+  border-top: 1px solid #e6e6e6;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  position: relative;
+}
+.container-select ul li::before {
+  font-family: "Font Awesome 5 Free";
+  content: "";
+  vertical-align: middle;
+  font-weight: 900;
+  position: absolute;
+  right: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+.container-select ul li:hover,
+.container-select ul li.current {
+  background: #000000;
+}
+
+.container-select ul li.active::before {
+  opacity: 1;
 }

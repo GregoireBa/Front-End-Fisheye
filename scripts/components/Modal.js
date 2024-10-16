@@ -30,7 +30,7 @@ export function Modal(contentDOM) {
     const closeBtn = modalElement.querySelector(".close");
     closeBtn.focus();
 
-    // Ajouter les sentinelles pour piéger le focus
+    // Piège le focus dans la modal
     trapFocus(modalElement);
   }
 
