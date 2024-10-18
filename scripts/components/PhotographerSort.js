@@ -12,7 +12,6 @@ export function PhotographerSort(media) {
         aria-controls="listbox"
         aria-haspopup="listbox"
         tabindex="0"
-        data-filter-type="popularity"
         aria-expanded="false">
         Popularité
         </button>
@@ -34,13 +33,11 @@ export function PhotographerSort(media) {
 
   let isDropdownOpen = false;
   let currentOptionIndex = 0;
-  let lastTypedChar = "";
-  let lastMatchingIndex = 0;
 
   const toggleDropdown = () => {
     elements.dropdown.classList.toggle("active");
     isDropdownOpen = !isDropdownOpen;
-    elements.button.setAttribute("aria-expanded", isDropdownOpen.toString());
+    elements.button.setAttribute("aria-expanded", isDropdownOpen);
 
     if (isDropdownOpen) {
       focusCurrentOption();
@@ -125,9 +122,7 @@ export function PhotographerSort(media) {
     currentOption.classList.add("current");
     currentOption.focus();
 
-    currentOption.scrollIntoView({
-      block: "nearest",
-    });
+    currentOption.scrollIntoView({ block: "nearest" });
 
     elements.options.forEach((option) => {
       if (option !== currentOption) {
@@ -155,7 +150,7 @@ export function PhotographerSort(media) {
     optionElement.setAttribute("aria-selected", "true");
 
     toggleDropdown();
-    announceOption(optionValue);
+    announceOption(`Les cartes ont été réordonnées selon ${optionValue}`);
 
     const sortedMedia = sortBy(media, optionValue);
 
@@ -163,30 +158,6 @@ export function PhotographerSort(media) {
       detail: { sortedMedia },
     });
     document.dispatchEvent(sortChangeEvent);
-  };
-
-  const handleAlphanumericKeyPress = (key) => {
-    const typedChar = key.toLowerCase();
-
-    if (lastTypedChar !== typedChar) {
-      lastMatchingIndex = 0;
-    }
-
-    const matchingOptions = Array.from(elements.options).filter((option) =>
-      option.textContent.toLowerCase().startsWith(typedChar)
-    );
-
-    if (matchingOptions.length) {
-      if (lastMatchingIndex === matchingOptions.length) {
-        lastMatchingIndex = 0;
-      }
-      let value = matchingOptions[lastMatchingIndex];
-      const index = Array.from(elements.options).indexOf(value);
-      currentOptionIndex = index;
-      focusCurrentOption();
-      lastMatchingIndex += 1;
-    }
-    lastTypedChar = typedChar;
   };
 
   const announceOption = (text) => {
@@ -199,7 +170,7 @@ export function PhotographerSort(media) {
   };
 
   elements.button.addEventListener("keydown", handleKeyPress);
-  document.addEventListener("click", handleDocumentInteraction);
+  document.addEventListener("mousedown", handleDocumentInteraction);
 
   return { element: select, sortBy };
 }

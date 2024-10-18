@@ -27,31 +27,31 @@ export function PhotographerGallery(photographer, media) {
 
   const renderGallery = () => {
     const galleryContent = `
-      <section class="gallery">
+      <section class="gallery" aria-live="polite">
         ${media
           .map((mediaItem) => {
             const mediaElement = mediaItem.image
               ? MediaFactory(
                   "image",
                   `./assets/images/photographers/${photographer.name}/${mediaItem.image}`,
-                  mediaItem.alt
+                  mediaItem.title
                 ).outerHTML
               : MediaFactory(
                   "video",
                   `./assets/images/photographers/${photographer.name}/${mediaItem.video}`,
-                  mediaItem.alt
+                  mediaItem.title
                 ).outerHTML;
 
             return `
               <div class="gallery_card">
-                <a href="#" data-media="${mediaItem.id}" aria-label="${mediaItem.title}">
+                <a href="#" data-media="${mediaItem.id}" aria-labelledby="title-${mediaItem.id}">
                   ${mediaElement}
                 </a>
                 <div class="figcaption-gallery">
-                  <h2>${mediaItem.title}</h2>
-                  <div class="grp-like">
+                  <h2 id="title-${mediaItem.id}">${mediaItem.title}</h2>
+                  <div class="grp-like" aria-live="polite">
                     <span class="nbLike">${mediaItem.likes}</span>
-                    <button class="btn_like" type="button" aria-label="Nombre de likes pour le média ${mediaItem.title}" data-id="${mediaItem.id}">
+                    <button class="btn_like" type="button" aria-label="${mediaItem.likes} likes pour le média ${mediaItem.title}" data-id="${mediaItem.id}">
                       <span class="fas fa-heart" aria-hidden="true"></span>
                     </button>
                   </div>
