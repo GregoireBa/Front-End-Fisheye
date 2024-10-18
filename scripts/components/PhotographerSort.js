@@ -1,4 +1,4 @@
-export function PhotographerSort() {
+export function PhotographerSort(media) {
   const select = document.createElement("div");
   select.classList.add("custom-select");
 
@@ -12,6 +12,7 @@ export function PhotographerSort() {
         aria-controls="listbox"
         aria-haspopup="listbox"
         tabindex="0"
+        data-filter-type="popularity"
         aria-expanded="false">
         Popularité
         </button>
@@ -53,9 +54,8 @@ export function PhotographerSort() {
     const openKeys = ["ArrowDown", "ArrowUp", "Enter", " "];
 
     if (key === "Tab") {
-      // Ne pas empêcher le comportement par défaut de la touche Tab pour permettre de sortir du composant
       if (isDropdownOpen) {
-        toggleDropdown(); // Fermer le dropdown lorsqu'on appuie sur Tab
+        toggleDropdown();
       }
       return;
     }
@@ -94,7 +94,6 @@ export function PhotographerSort() {
       toggleDropdown();
     }
 
-    // Check if the click is on an option
     const clickedOption = event.target.closest('[role="option"]');
     if (clickedOption) {
       selectOptionByElement(clickedOption);
@@ -126,17 +125,16 @@ export function PhotographerSort() {
     currentOption.classList.add("current");
     currentOption.focus();
 
-    // Scroll the current option into view
     currentOption.scrollIntoView({
       block: "nearest",
     });
 
-    elements.options.forEach((option, index) => {
+    elements.options.forEach((option) => {
       if (option !== currentOption) {
         option.classList.remove("current");
       }
     });
-    announceOption(`Vous êtes actuellement focus sur ${optionLabel}`); // Announce the selected option within a delayed period
+    announceOption(`Vous êtes actuellement focus sur ${optionLabel}`);
   };
 
   const selectCurrentOption = () => {
@@ -145,7 +143,7 @@ export function PhotographerSort() {
   };
 
   const selectOptionByElement = (optionElement) => {
-    const optionValue = optionElement.textContent;
+    const optionValue = optionElement.textContent.trim().toLowerCase();
 
     elements.button.textContent = optionValue;
     elements.options.forEach((option) => {
@@ -157,7 +155,14 @@ export function PhotographerSort() {
     optionElement.setAttribute("aria-selected", "true");
 
     toggleDropdown();
-    announceOption(optionValue); // Announce the selected option
+    announceOption(optionValue);
+
+    const sortedMedia = sortBy(media, optionValue);
+
+    const sortChangeEvent = new CustomEvent("sortChange", {
+      detail: { sortedMedia },
+    });
+    document.dispatchEvent(sortChangeEvent);
   };
 
   const handleAlphanumericKeyPress = (key) => {
@@ -190,11 +195,24 @@ export function PhotographerSort() {
     setTimeout(() => {
       elements.announcement.textContent = "";
       elements.announcement.setAttribute("aria-live", "off");
-    }, 1000); // Announce and clear after 1 second (adjust as needed)
+    }, 1000);
   };
 
   elements.button.addEventListener("keydown", handleKeyPress);
   document.addEventListener("click", handleDocumentInteraction);
 
-  return select;
+  return { element: select, sortBy };
+}
+
+function sortBy(media, type) {
+  switch (type.toLowerCase()) {
+    case "popularité":
+      return media.sort((a, b) => b.likes - a.likes);
+    case "date":
+      return media.sort((a, b) => new Date(b.date) - new Date(a.date));
+    case "titre":
+      return media.sort((a, b) => a.title.localeCompare(b.title));
+    default:
+      throw Error("Veuillez fournir un type de tri valide");
+  }
 }

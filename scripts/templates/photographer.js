@@ -5,10 +5,7 @@ import { Modal } from "../components/Modal.js";
 import { ContactForm } from "../components/ContactForm.js";
 import { PhotographerSort } from "../components/PhotographerSort.js";
 import { PhotographerGallery } from "../components/PhotographerGallery.js";
-import {
-  AsidePhotographer,
-  updateAsideLikes,
-} from "../components/AsidePhotographer.js";
+import { AsidePhotographer } from "../components/AsidePhotographer.js";
 
 function photographerTemplate() {
   function createHomePage(photographers) {
@@ -45,11 +42,12 @@ function photographerTemplate() {
     // Main - Select - Gallery - Aside
     const main = document.getElementById("main");
 
-    const select = PhotographerSort();
+    const { element: select, sortBy } = PhotographerSort(media);
     main.appendChild(select);
 
-    const galeryCard = PhotographerGallery(photographer, media);
-    main.appendChild(galeryCard);
+    // Composant de la galerie avec `sortBy` passé en paramètre
+    const galleryCard = PhotographerGallery(photographer, media, sortBy);
+    main.appendChild(galleryCard);
 
     const aside = AsidePhotographer(photographer, media);
     main.appendChild(aside);
